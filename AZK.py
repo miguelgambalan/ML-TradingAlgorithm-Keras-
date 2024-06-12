@@ -8,8 +8,19 @@ from userspecificdata import ApiKey
 
 
 
-def getData():
-    apiUrl = f"https://api.twelvedata.com/eod?symbol=AAPL&apikey=" + ApiKey
+def getDataQuote(symbol):
+    apiUrl = f"https://api.twelvedata.com/quote?symbol=" + symbol + "&apikey=" + ApiKey
+    response = requests.get(apiUrl)
+    
+    if response.status_code == 200:
+        data = response.json()
+        print("Full JSON response:\n", json.dumps(data, sort_keys=True, indent=4))
+    else:
+        print(f"Error: {response.status_code}")
+
+
+def getDataMACD(symbol):
+    apiUrl = f"https://api.twelvedata.com/macd?symbol=" + symbol + "&interval=1min&apikey=" + ApiKey
     response = requests.get(apiUrl)
     
     if response.status_code == 200:
@@ -21,13 +32,14 @@ def getData():
 
 
 
+
 #TEST ---------------------------
 
 
 
 def main():
 
-    getData()
+    getDataMACD("AMD")
 
     today = ql.Date(10,5,2024)
 
