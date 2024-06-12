@@ -20,7 +20,7 @@ def getDataQuote(symbol):
 
 
 def getDataMACD(symbol):
-    apiUrl = f"https://api.twelvedata.com/macd?symbol=" + symbol + "&interval=1min&apikey=" + ApiKey
+    apiUrl = f"https://api.twelvedata.com/macd?symbol=" + symbol + "&interval=1day&apikey=" + ApiKey
     response = requests.get(apiUrl)
     
     if response.status_code == 200:
