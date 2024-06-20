@@ -6,6 +6,21 @@ import pandas as pd
 import requests
 from userspecificdata import ApiKey
 from IPython.core.debugger import set_trace
+import matplotlib.pyplot as plt
+from pandas import read_csv, set_option
+from pandas.plotting import scatter_matrix
+import seaborn as sns
+from sklearn.preprocessing import StandardScaler
+import datetime
+import tensorflow as tf
+
+#Import Model Packages for reinforcement learning
+from keras import layers
+from keras import ops
+from keras import backend as K
+from collections import namedtuple, deque
+
+
 
 
 
