@@ -5,6 +5,7 @@ import numpy as np
 import pandas as pd
 import requests
 from userspecificdata import ApiKey
+from IPython.core.debugger import set_trace
 
 
 
