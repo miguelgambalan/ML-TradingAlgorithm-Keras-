@@ -19,14 +19,21 @@ from keras import ops
 from keras import backend as K
 from collections import namedtuple, deque
 
+
+#to help libraries work properly
 warnings.filterwarnings("ignore")
 dataset = read_csv('SP500.csv',index_col=0)
 type(dataset)
+
+
+
+#dataset output for graph, table and other info
 dataset.shape
 set_option("display.width" , 100)
 pd.options.display.max_rows = 5
 pd.set_option("display.precision" , 3)
 print(type(dataset))
+#Gives statistics on dataset
 print("describe")
 print(dataset.describe())
 dataset["Close"].plot()
@@ -35,6 +42,14 @@ plt.xlabel("Date")
 plt.ylabel("Closing Price")
 plt.grid(True)
 plt.show()
+
+#Cleaning data of null values
+print('Null Values =',dataset.isnull().values.any())
+dataset=dataset.fillna(method='ffill')
+dataset.head(2)
+
+#Gives statistics on dataset
+
 
 
 
