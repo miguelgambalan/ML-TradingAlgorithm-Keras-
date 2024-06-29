@@ -13,15 +13,28 @@ import seaborn as sns
 from sklearn.preprocessing import StandardScaler
 import datetime
 import tensorflow as tf
-
-#Import Model Packages for reinforcement learning
+import warnings
 from keras import layers
 from keras import ops
 from keras import backend as K
 from collections import namedtuple, deque
 
+warnings.filterwarnings("ignore")
 dataset = read_csv('SP500.csv',index_col=0)
-
+type(dataset)
+dataset.shape
+set_option("display.width" , 100)
+pd.options.display.max_rows = 5
+pd.set_option("display.precision" , 3)
+print(type(dataset))
+print("describe")
+print(dataset.describe())
+dataset["Close"].plot()
+plt.title("S&P 500 Closing Prices")
+plt.xlabel("Date")
+plt.ylabel("Closing Price")
+plt.grid(True)
+plt.show()
 
 
 
@@ -56,7 +69,7 @@ def getDataMACD(symbol):
 
 def main():
 
-    getDataMACD("AMD")
+    #getDataMACD("AMD")
 
     today = ql.Date(10,5,2024)
 
@@ -70,7 +83,7 @@ def main():
 
 
     print (rate)
-    print(dataset)
+    print(dataset.head(10))
 
 
 #TEST------------------------------
