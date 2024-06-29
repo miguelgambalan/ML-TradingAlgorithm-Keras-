@@ -20,6 +20,7 @@ from keras import ops
 from keras import backend as K
 from collections import namedtuple, deque
 
+dataset = read_csv('SP500.csv',index_col=0)
 
 
 
@@ -69,6 +70,7 @@ def main():
 
 
     print (rate)
+    print(dataset)
 
 
 #TEST------------------------------
