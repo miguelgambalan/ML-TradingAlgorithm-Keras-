@@ -48,7 +48,12 @@ print('Null Values =',dataset.isnull().values.any())
 dataset=dataset.fillna(method='ffill')
 dataset.head(2)
 
-#Gives statistics on dataset
+X=list(dataset["Close"])
+X=[float(x) for x in X]
+validation_size = 0.2
+train_size = int(len(X) * (1-validation_size))
+X_train, X_test = X[0:train_size], X[train_size:len(X)]
+
 
 
 
