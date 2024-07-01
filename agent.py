@@ -1,8 +1,7 @@
 import keras
-from keras.models import Sequential
-from keras.models import load_model
-from keras.layers import Dense
-from keras.optimizers import Adam
+from tensorflow.python.keras.models import Sequential, load_model
+from tensorflow.python.keras.layers import Dense
+from tensorflow.python.keras.optimizers import Adam
 from IPython.core.debugger import set_trace
 
 import numpy as np
