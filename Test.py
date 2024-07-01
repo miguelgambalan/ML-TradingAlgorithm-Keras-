@@ -4,6 +4,7 @@ from matplotlib.mlab import window_none
 from AZK import X_test
 from Helper import formatPrice, getState, plot_behavior
 from agent import Agent
+from Trainer import episode_count
 
 
 test_data = X_test

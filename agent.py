@@ -37,7 +37,7 @@ class Agent:
         model.add(Dense(units=8, activation="relu"))
         #Output Layer 
         model.add(Dense(self.action_size, activation="linear"))
-        model.compile(loss="mse", optimizer=Adam(lr=0.001))
+        model.compile(loss="mse", optimizer=adam_v2(lr=0.001))
         return model
     
     #Return the action on the value function

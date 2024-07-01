@@ -34,7 +34,6 @@ pd.options.display.max_rows = 5
 pd.set_option("display.precision" , 3)
 print(type(dataset))
 #Gives statistics on dataset
-print("describe")
 print(dataset.describe())
 dataset["Close"].plot()
 plt.title("S&P 500 Closing Prices")
@@ -91,22 +90,22 @@ def main():
 
     #getDataMACD("AMD")
 
-    today = ql.Date(10,5,2024)
+    #today = ql.Date(10,5,2024)
 
-    ql.Settings.instance().evaluationDate = today
-
-
-    print(ql.Settings.instance().evaluationDate)
+    #ql.Settings.instance().evaluationDate = today
 
 
-    rate = ql.InterestRate(0.05, ql.Actual360(), ql.Compounded, ql.Annual)
+    #print(ql.Settings.instance().evaluationDate)
 
 
-    print (rate)
-    print(dataset.head(10))
+    #rate = ql.InterestRate(0.05, ql.Actual360(), ql.Compounded, ql.Annual)
+
+
+    #print (rate)
+    #print(dataset.head(10))
 
 
 #TEST------------------------------
     
-if __name__ == '__main__':
-    main()
+    if __name__ == '__main__':
+        main()
