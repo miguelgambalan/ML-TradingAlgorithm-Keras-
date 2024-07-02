@@ -9,7 +9,7 @@ agent = Agent(window_size)
 #In this step we feed the closing value of the stock price 
 data = X_train
 l = len(data) - 1
-#
+print(data)
 batch_size = 32
 #An episode represents a complete pass over the data.
 episode_count = 10
