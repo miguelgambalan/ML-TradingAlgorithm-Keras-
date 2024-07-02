@@ -24,7 +24,7 @@ agent.inventory = []
 
 for t in range(l_test):
     action = agent.act(state)
-    #print(action)
+    print(action)
     #set_trace()
     next_state = getState(test_data, t + 1, window_none + 1)
     reward = 0

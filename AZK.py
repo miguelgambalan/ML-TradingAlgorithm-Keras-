@@ -86,7 +86,7 @@ def getDataMACD(symbol):
 
 
 
-def main():
+
 
     #getDataMACD("AMD")
 
@@ -106,6 +106,4 @@ def main():
 
 
 #TEST------------------------------
-    
-    if __name__ == '__main__':
-        main()
+  

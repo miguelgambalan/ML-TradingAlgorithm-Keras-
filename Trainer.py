@@ -4,7 +4,7 @@ import numpy as np
 from AZK import X_train
 from Helper import formatPrice, getState, plot_behavior
 from agent import Agent
-window_size = 1
+window_size = 10
 agent = Agent(window_size)
 #In this step we feed the closing value of the stock price 
 data = X_train
