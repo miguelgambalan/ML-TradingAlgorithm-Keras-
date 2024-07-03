@@ -39,5 +39,5 @@ def plot_behavior(data_input, states_buy, states_sell, profit):
     plt.plot(data_input, 'v', markersize=10, color='k', label = 'Selling signal', markevery = states_sell)
     plt.title('Total gains: %f'%(profit))
     plt.legend()
-    #plt.savefig('output/'+name+'.png')
+    plt.savefig('output/'+"name"+'.png')
     plt.show()
