@@ -1,5 +1,6 @@
 import QuantLib as ql
 import json
+import os
 import math
 import numpy as np
 import pandas as pd
@@ -14,6 +15,8 @@ from sklearn.preprocessing import StandardScaler
 import datetime
 import tensorflow as tf
 import warnings
+os.environ["KERAS_BACKEND"] = "tensorflow"
+import keras
 from keras import layers
 from keras import ops
 from keras import backend as K

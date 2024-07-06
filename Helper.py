@@ -41,3 +41,5 @@ def plot_behavior(data_input, states_buy, states_sell, profit):
     plt.legend()
     plt.savefig('output/'+"name"+'.png')
     plt.show()
+
+
