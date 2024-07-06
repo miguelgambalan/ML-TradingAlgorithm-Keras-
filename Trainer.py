@@ -4,7 +4,7 @@ import numpy as np
 from AZK import X_train
 from Helper import formatPrice, getState, plot_behavior
 from agent import Agent
-
+import tensorflow
 
 window_size = 1
 agent = Agent(window_size)

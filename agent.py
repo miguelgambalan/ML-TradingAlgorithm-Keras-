@@ -1,7 +1,6 @@
 import os
 os.environ["KERAS_BACKEND"] = "tensorflow"
 import tensorflow as tf
-import keras
 from tensorflow.python.keras.models import Sequential, load_model
 from tensorflow.python.keras.layers import Dense
 from IPython.core.debugger import set_trace
@@ -9,6 +8,7 @@ import numpy as np
 import random
 from collections import deque
 from tensorflow.python.keras.optimizers import adam_v2
+
 
 
 class Agent:
@@ -41,7 +41,8 @@ class Agent:
         model.add(Dense(units=8, activation="relu"))
         #Output Layer 
         model.add(Dense(self.action_size, activation="linear"))
-        model.compile(loss="mse", optimizer=adam_v2(learning_rate=0.001))
+        optimizer = adam_v2.Adam(learning_rate = 0.001)
+        model.compile(loss="mse", optimizer=optimizer)
         return model
     
     #Return the action on the value function
