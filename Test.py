@@ -9,7 +9,7 @@ from Trainer import episode_count
 
 test_data = X_test
 l_test = len(test_data) - 1
-state = getState(test_data, 0, window_none + 1)
+state = getState(test_data, 0, window_none(episode_count) + 1)
 total_profit = 0
 is_eval = True
 done = False
@@ -17,8 +17,8 @@ states_sell_test = []
 states_buy_test = []
 #Get the trained model
 model_name = "model_ep"+str(episode_count)
-agent = Agent(window_none, is_eval, model_name)
-state = getState(date, 0, window_none + 1)
+agent = Agent(window_none, is_eval, model_name + ".keras")
+state = getState(date, 0, window_none(episode_count) + 1)
 total_profit = 0
 agent.inventory = []
 
@@ -26,7 +26,7 @@ for t in range(l_test):
     action = agent.act(state)
     print(action)
     #set_trace()
-    next_state = getState(test_data, t + 1, window_none + 1)
+    next_state = getState(test_data, t + 1, window_none(episode_count) + 1)
     reward = 0
 
     if action == 1:

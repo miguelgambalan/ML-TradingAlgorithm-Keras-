@@ -44,7 +44,7 @@ class Agent:
         return model
     
     def act(self, state):
-        if not self.is_eval and random.random() <= self.epsilon:
+        if not self.is_eval and np.random.rand() <= self.epsilon:
             return random.randrange(self.action_size)
         options = self.model.predict(state)
         return np.argmax(options[0])

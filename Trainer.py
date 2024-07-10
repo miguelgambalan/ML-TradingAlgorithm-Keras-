@@ -13,7 +13,7 @@ data = X_train
 l = len(data) - 1
 batch_size = 32
 #An episode represents a complete pass over the data.
-episode_count = 1
+episode_count = 2
 
 for e in range(episode_count + 1):
     print("Running episode " + str(e) + "/" + str(episode_count))
@@ -62,7 +62,7 @@ for e in range(episode_count + 1):
             
             plot_behavior(data,states_buy, states_sell, total_profit)
 
-            np.ndarray(shape=(94,5), dtype=dtype, order='F')
+            np.ndarray(shape=(0,5), dtype=dtype, order='F')
             structured_array = np.array(agent.memory, dtype=dtype)
             reshaped_memory = []
             for mem in structured_array:
@@ -81,4 +81,4 @@ for e in range(episode_count + 1):
             
 
     if e % 2 == 0:
-        agent.model.save("model_ep" + str(e))
+        agent.model.save("model_ep" + str(e)+".keras")
