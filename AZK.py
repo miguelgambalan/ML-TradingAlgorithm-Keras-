@@ -23,7 +23,7 @@ from collections import namedtuple, deque
 
 #to help libraries work properly
 warnings.filterwarnings("ignore")
-dataset = read_csv('SP500.csv',index_col=0)
+dataset = read_csv('SHORTSPY.csv',index_col=0)
 type(dataset)
 
 

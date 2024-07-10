@@ -3,9 +3,16 @@ import random
 import numpy as np
 from collections import deque
 import tensorflow as tf
+
 from tensorflow.keras.models import Sequential, load_model
 from tensorflow.keras.layers import Dense
 from tensorflow.keras.optimizers import Adam
+
+#from keras import layers
+#from keras import optimizers
+#from keras import models, Sequential
+#from keras import models, saving
+#from keras import optimizers
 
 class Agent:
     def __init__(self, state_size, is_eval=False, model_name=""):

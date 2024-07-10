@@ -1,6 +1,7 @@
 from matplotlib import pyplot as plt
 import numpy as np
 import math
+import os
 
 # prints formatted price
 def formatPrice(n):
@@ -33,6 +34,9 @@ def getState(data, t, n):
 
 # Plots the behavior of the output
 def plot_behavior(data_input, states_buy, states_sell, profit):
+    output_dir = 'output/'
+    if not os.path.exists(output_dir):
+        os.makedirs(output_dir)
     fig = plt.figure(figsize = (15,5))
     plt.plot(data_input, color='r', lw=2.)
     plt.plot(data_input, '^', markersize=10, color='m', label = 'Buying signal', markevery = states_buy)
