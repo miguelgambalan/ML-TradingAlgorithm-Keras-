@@ -1,3 +1,4 @@
+import time
 from matplotlib import pyplot as plt
 import numpy as np
 import math
@@ -38,6 +39,7 @@ def plot_behavior(data_input, states_buy, states_sell, profit):
     if not os.path.exists(output_dir):
         os.makedirs(output_dir)
     fig = plt.figure(figsize = (15,5))
+    plt.ion()
     plt.plot(data_input, color='r', lw=2.)
     plt.plot(data_input, '^', markersize=10, color='m', label = 'Buying signal', markevery = states_buy)
     plt.plot(data_input, 'v', markersize=10, color='k', label = 'Selling signal', markevery = states_sell)
@@ -45,5 +47,7 @@ def plot_behavior(data_input, states_buy, states_sell, profit):
     plt.legend()
     plt.savefig('output/'+"name"+'.png')
     plt.show()
+    time.sleep(10)
+    plt.close()
 
 

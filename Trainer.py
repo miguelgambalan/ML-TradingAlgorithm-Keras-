@@ -13,7 +13,7 @@ data = X_train
 l = len(data) - 1
 batch_size = 32
 #An episode represents a complete pass over the data.
-episode_count = 2
+episode_count = 3
 
 for e in range(episode_count + 1):
     print("Running episode " + str(e) + "/" + str(episode_count))
