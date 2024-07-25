@@ -3,7 +3,6 @@ import random
 import numpy as np
 from collections import deque
 import tensorflow as tf
-
 from tensorflow.keras.models import Sequential, load_model
 from tensorflow.keras.layers import Dense
 from tensorflow.keras.optimizers import Adam
