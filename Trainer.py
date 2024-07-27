@@ -1,6 +1,7 @@
 from IPython.core.debugger import set_trace
 import pandas as pd
 import numpy as np
+import keras
 from AZK import X_train
 from Helper import formatPrice, getState, plot_behavior
 from agent import Agent
@@ -13,7 +14,7 @@ data = X_train
 l = len(data) - 1
 batch_size = 32
 #An episode represents a complete pass over the data.
-episode_count = 10
+episode_count = 1
 
 for e in range(episode_count + 1):
     print("Running episode " + str(e) + "/" + str(episode_count))
@@ -80,5 +81,5 @@ for e in range(episode_count + 1):
             agent.expReplay(batch_size)    
             
 
-    if e % 2 == 0:
-        agent.model.save("model_ep" + str(e)+".keras")
+    #if e % 2 == 0:
+    agent.model.save("model_ep" + str(e)+".keras")

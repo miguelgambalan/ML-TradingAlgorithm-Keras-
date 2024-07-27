@@ -8,29 +8,25 @@ import os
 def formatPrice(n):
     return ("-$" if n < 0 else "$") + "{0:.2f}".format(abs(n))
 
-# # returns the vector containing stock data from a fixed file 
-# def getStockData(key):
-#     vec = []
-#     lines = open("data/" + key + ".csv", "r").read().splitlines()
-
-#     for line in lines[1:]:
-#         vec.append(float(line.split(",")[4])) #Only Close column
-
-#     return vec
-
 # returns the sigmoid
 def sigmoid(x):
     return 1 / (1 + math.exp(-x))
 
-# returns an an n-day state representation ending at time t
-
+# returns an n-day state representation ending at time t
 def getState(data, t, n):    
     d = t - n + 1
-    block = data[d:t + 1] if d >= 0 else -d * [data[0]] + data[0:t + 1] # pad with t0
-    #block is which is the for [1283.27002, 1283.27002]
+    if d >= 0:
+        block = data[d:t + 1]
+    else:
+        block = [data[0]] * (-d) + data[0:t + 1]  # pad with the first element of data
+
+    print(f"Block: {block}")  # Debugging print statement
+
     res = []
     for i in range(n - 1):
+        print(f"block[{i + 1}] = {block[i + 1]}, block[{i}] = {block[i]}")  # Debugging print statement
         res.append(sigmoid(block[i + 1] - block[i]))
+    
     return np.array([res])
 
 # Plots the behavior of the output
@@ -50,4 +46,10 @@ def plot_behavior(data_input, states_buy, states_sell, profit):
     time.sleep(10)
     plt.close()
 
+# Example usage of getState
+data = [1283.27002, 1283.27002, 1284.27002, 1285.27002, 1286.27002]  # Example list
+t = 3
+n = 2
 
+state = getState(data, t, n)
+print(state)
