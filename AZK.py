@@ -5,7 +5,6 @@ import numpy as np
 import pandas as pd
 import requests
 from userspecificdata import ApiKey
-from IPython.core.debugger import set_trace
 import matplotlib.pyplot as plt
 from pandas import read_csv, set_option
 from pandas.plotting import scatter_matrix
@@ -23,7 +22,7 @@ from collections import namedtuple, deque
 
 #to help libraries work properly
 warnings.filterwarnings("ignore")
-dataset = read_csv('SHORTSPY.csv',index_col=0)
+dataset = read_csv('SP500.csv',index_col=0)
 type(dataset)
 
 
