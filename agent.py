@@ -3,9 +3,10 @@ import random
 import numpy as np
 from collections import deque
 import tensorflow as tf
-from tensorflow.keras.models import Sequential, load_model
-from tensorflow.keras.layers import Dense
+from tensorflow.python.keras.models import Sequential, load_model
+from tensorflow.python.keras.layers import Dense
 from tensorflow.keras.optimizers import Adam
+
 
 #from keras import layers
 #from keras import optimizers
