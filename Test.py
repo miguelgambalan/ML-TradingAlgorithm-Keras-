@@ -1,12 +1,13 @@
 #agent is already defined in the training set above.
 from datetime import date
+import tensorflow
 from matplotlib.mlab import window_none
 from AZK import X_test
 from Helper import formatPrice, getState, plot_behavior
 from agent import Agent
 from Trainer import episode_count
 
-
+episode_count = int(episode_count)
 test_data = X_test
 l_test = len(test_data) - 1
 state = getState(test_data, 0, window_none(episode_count) + 1)

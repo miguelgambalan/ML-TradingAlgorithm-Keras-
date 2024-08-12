@@ -3,16 +3,9 @@ import random
 import numpy as np
 from collections import deque
 import tensorflow as tf
-from tensorflow.python.keras.models import Sequential, load_model
-from tensorflow.python.keras.layers import Dense
-from tensorflow.keras.optimizers import Adam
-
-
-#from keras import layers
-#from keras import optimizers
-#from keras import models, Sequential
-#from keras import models, saving
-#from keras import optimizers
+from tensorflow.keras.models import Model, load_model
+from tensorflow.keras.layers import Dense, Input
+from tensorflow.keras.optimizers import adam_v2
 
 class Agent:
     def __init__(self, state_size, is_eval=False, model_name=""):
@@ -34,13 +27,26 @@ class Agent:
             self.model = self._model()
 
     def _model(self):
-        model = Sequential()
-        model.add(Dense(units=64, input_dim=self.state_size, activation="relu"))
-        model.add(Dense(units=32, activation="relu"))
-        model.add(Dense(units=8, activation="relu"))
-        model.add(Dense(self.action_size, activation="linear"))
-        optimizer = Adam(learning_rate=0.001)
-        model.compile(loss="mse", optimizer=optimizer)
+        # Define input layer
+        inputs = Input(shape=(self.state_size,))  # Adjust state_size to match your input dimension
+        
+        # Add hidden layers
+        x = Dense(units=64, activation='relu')(inputs)
+        x = Dense(units=32, activation='relu')(x)
+        x = Dense(units=8, activation='relu')(x)
+        
+        # Define output layer
+        outputs = Dense(self.action_size, activation='linear')(x)  # Adjust action_size to match your output dimension
+        
+        # Create the model
+        model = Model(inputs=inputs, outputs=outputs)
+        
+        # Configure the optimizer
+        optimizer = adam_v2.Adam(learning_rate=0.001)
+        
+        # Compile the model
+        model.compile(optimizer=optimizer, loss='mse')  # type: ignore
+        
         return model
     
     def act(self, state):

@@ -22,7 +22,7 @@ from collections import namedtuple, deque
 
 #to help libraries work properly
 warnings.filterwarnings("ignore")
-dataset = read_csv('SP500.csv',index_col=0)
+dataset = read_csv('SHORTSPY.csv',index_col=0)
 type(dataset)
 
 
@@ -44,7 +44,7 @@ plt.show()
 
 #Cleaning data of null values
 print('Null Values =',dataset.isnull().values.any())
-dataset=dataset.fillna(method='ffill')
+dataset=dataset.ffill()
 dataset.head(2)
 
 X=list(dataset["Close"])

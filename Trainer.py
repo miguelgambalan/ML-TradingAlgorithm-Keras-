@@ -4,7 +4,6 @@ import keras
 from AZK import X_train
 from Helper import formatPrice, getState, plot_behavior
 from agent import Agent
-import tensorflow
 
 window_size = 1
 agent = Agent(window_size)
@@ -14,6 +13,7 @@ l = len(data) - 1
 batch_size = 32
 #An episode represents a complete pass over the data.
 episode_count = 1
+episode_count = int(episode_count)
 
 for e in range(episode_count + 1):
     print("Running episode " + str(e) + "/" + str(episode_count))
