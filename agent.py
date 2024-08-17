@@ -3,9 +3,9 @@ import random
 import numpy as np
 from collections import deque
 import tensorflow as tf
-from tensorflow.keras.models import Model, load_model
-from tensorflow.keras.layers import Dense, Input
-from tensorflow.keras.optimizers import adam_v2
+from tensorflow.python.keras.models import Model, load_model
+from tensorflow.python.keras.layers import Dense, Input
+from tensorflow.python.keras.optimizer_v2 import adam
 
 class Agent:
     def __init__(self, state_size, is_eval=False, model_name=""):
@@ -42,7 +42,7 @@ class Agent:
         model = Model(inputs=inputs, outputs=outputs)
         
         # Configure the optimizer
-        optimizer = adam_v2.Adam(learning_rate=0.001)
+        optimizer = adam(learning_rate=0.001)
         
         # Compile the model
         model.compile(optimizer=optimizer, loss='mse')  # type: ignore
@@ -50,10 +50,15 @@ class Agent:
         return model
     
     def act(self, state):
+        if self.model is None:
+            raise ValueError("Model is not initialized!")
+    
+        state = np.reshape(state, [1, self.state_size])
         if not self.is_eval and np.random.rand() <= self.epsilon:
             return random.randrange(self.action_size)
         options = self.model.predict(state)
         return np.argmax(options[0])
+
 
     def expReplay(self, batch_size):
         mini_batch = random.sample(self.memory, batch_size)
