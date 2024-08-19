@@ -19,7 +19,7 @@ states_buy_test = []
 #Get the trained model
 model_name = "model_ep"+str(episode_count)
 agent = Agent(window_none, is_eval, model_name + ".keras")
-state = getState(date, 0, window_none(episode_count) + 1)
+state = getState(test_data, 0, window_none(episode_count) + 1)
 total_profit = 0
 agent.inventory = []
 
