@@ -3,9 +3,9 @@ import random
 import numpy as np
 from collections import deque
 import tensorflow as tf
-from tensorflow.python.keras.models import Model, load_model
-from tensorflow.python.keras.layers import Dense, Input
-from tensorflow.python.keras.optimizer_v2 import adam
+from tensorflow.keras.models import Model, load_model
+from tensorflow.keras.layers import Dense, Input
+from tensorflow.keras.optimizers import Adam
 
 class Agent:
     def __init__(self, state_size, is_eval=False, model_name=""):
@@ -42,8 +42,8 @@ class Agent:
         model = Model(inputs=inputs, outputs=outputs)
         
         # Configure the optimizer
-        optimizer = adam(learning_rate=0.001)
-        
+        optimizer = Adam(learning_rate=0.001)
+
         # Compile the model
         model.compile(optimizer=optimizer, loss='mse')  # type: ignore
         
@@ -59,17 +59,32 @@ class Agent:
         options = self.model.predict(state)
         return np.argmax(options[0])
 
-
     def expReplay(self, batch_size):
         mini_batch = random.sample(self.memory, batch_size)
-        for state, action, reward, next_state, done in mini_batch:
+        
+        print(f"Mini batch size: {len(mini_batch)}")
+        for i, (state, action, reward, next_state, done) in enumerate(mini_batch):
+            print(f"Sample {i}: state shape: {np.shape(state)}, action: {action}, reward: {reward}, next_state shape: {np.shape(next_state)}, done: {done}")
+            
             target = reward
+            next_state = np.reshape(next_state, [1, self.state_size])
+            print(f"Reshaped next_state shape: {np.shape(next_state)}")
+
             if not done:
                 target = reward + self.gamma * np.amax(self.model.predict(next_state)[0])
-            
+                print(f"Target after prediction: {target}")
+
+            state = np.reshape(state, [1, self.state_size])
             target_f = self.model.predict(state)
+            print(f"Predicted target_f: {target_f}")
+
             target_f[0][action] = target
+            print(f"Updated target_f: {target_f}")
+
             self.model.fit(state, target_f, epochs=1, verbose=0)
-        
+
         if self.epsilon > self.epsilon_min:
             self.epsilon *= self.epsilon_decay
+
+        print(f"Epsilon after decay: {self.epsilon}")
+
