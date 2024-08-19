@@ -10,8 +10,8 @@ from Trainer import episode_count
 episode_count = int(episode_count)
 test_data = X_test
 l_test = len(test_data) - 1
-window_size = window_none(episode_count) + 1  # This determines the size of the state space
-state_size = window_size  # Set state_size to window_size
+window_size = int(window_none(episode_count)) + 1  # This determines the size of the state space
+state_size = window_size-1  # Set state_size to window_size
 
 # Prepare the initial state
 state = getState(test_data, 0, window_size)

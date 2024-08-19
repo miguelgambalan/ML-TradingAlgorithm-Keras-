@@ -7,7 +7,7 @@ from tensorflow.keras.optimizers import Adam
 
 class Agent:
     def __init__(self, state_size, is_eval=False, model_name=""):
-        self.state_size = state_size
+        self.state_size = state_size  # Ensure this matches the state dimension
         self.action_size = 3
         self.memory = deque(maxlen=1000)
         self.inventory = []
@@ -25,7 +25,7 @@ class Agent:
             self.model = self._model()
 
     def _model(self):
-        inputs = Input(shape=(self.state_size,))  # Make sure to pass a tuple
+        inputs = Input(shape=(self.state_size,))
         x = Dense(units=64, activation='relu')(inputs)
         x = Dense(units=32, activation='relu')(x)
         x = Dense(units=8, activation='relu')(x)
@@ -37,7 +37,6 @@ class Agent:
         
         return model
 
-    
     def act(self, state):
         if self.model is None:
             raise ValueError("Model is not initialized!")
