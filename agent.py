@@ -1,8 +1,6 @@
-import os
 import random
 import numpy as np
 from collections import deque
-import tensorflow as tf
 from tensorflow.keras.models import Model, load_model
 from tensorflow.keras.layers import Dense, Input
 from tensorflow.keras.optimizers import Adam
@@ -27,33 +25,25 @@ class Agent:
             self.model = self._model()
 
     def _model(self):
-        # Define input layer
-        inputs = Input(shape=(self.state_size,))  # Adjust state_size to match your input dimension
-        
-        # Add hidden layers
+        inputs = Input(shape=(self.state_size,))  # Make sure to pass a tuple
         x = Dense(units=64, activation='relu')(inputs)
         x = Dense(units=32, activation='relu')(x)
         x = Dense(units=8, activation='relu')(x)
+        outputs = Dense(self.action_size, activation='linear')(x)
         
-        # Define output layer
-        outputs = Dense(self.action_size, activation='linear')(x)  # Adjust action_size to match your output dimension
-        
-        # Create the model
         model = Model(inputs=inputs, outputs=outputs)
-        
-        # Configure the optimizer
         optimizer = Adam(learning_rate=0.001)
-
-        # Compile the model
-        model.compile(optimizer=optimizer, loss='mse')  # type: ignore
+        model.compile(optimizer=optimizer, loss='mse')
         
         return model
+
     
     def act(self, state):
         if self.model is None:
             raise ValueError("Model is not initialized!")
     
         state = np.reshape(state, [1, self.state_size])
+        print(f"Reshaped state: {state}")
         if not self.is_eval and np.random.rand() <= self.epsilon:
             return random.randrange(self.action_size)
         options = self.model.predict(state)
@@ -61,7 +51,6 @@ class Agent:
 
     def expReplay(self, batch_size):
         mini_batch = random.sample(self.memory, batch_size)
-        
         print(f"Mini batch size: {len(mini_batch)}")
         for i, (state, action, reward, next_state, done) in enumerate(mini_batch):
             print(f"Sample {i}: state shape: {np.shape(state)}, action: {action}, reward: {reward}, next_state shape: {np.shape(next_state)}, done: {done}")
@@ -87,4 +76,3 @@ class Agent:
             self.epsilon *= self.epsilon_decay
 
         print(f"Epsilon after decay: {self.epsilon}")
-
