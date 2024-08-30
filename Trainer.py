@@ -12,7 +12,7 @@ data = X_train
 l = len(data) - 1
 batch_size = 32
 #An episode represents a complete pass over the data.
-episode_count = 1
+episode_count = 10
 episode_count = int(episode_count)
 
 for e in range(episode_count + 1):

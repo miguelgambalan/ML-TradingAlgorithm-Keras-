@@ -22,7 +22,7 @@ from collections import namedtuple, deque
 
 #to help libraries work properly
 warnings.filterwarnings("ignore")
-dataset = read_csv('SHORTSPY.csv',index_col=0)
+dataset = read_csv('SP500.csv',index_col=0)
 type(dataset)
 
 
@@ -55,55 +55,3 @@ X_train, X_test = X[0:train_size], X[train_size:len(X)]
 
 
 
-
-
-def getDataQuote(symbol):
-    apiUrl = f"https://api.twelvedata.com/quote?symbol=" + symbol + "&apikey=" + ApiKey
-    response = requests.get(apiUrl)
-    
-    if response.status_code == 200:
-        data = response.json()
-        print("Full JSON response:\n", json.dumps(data, sort_keys=True, indent=4))
-    else:
-        print(f"Error: {response.status_code}")
-
-
-def getDataMACD(symbol):
-    apiUrl = f"https://api.twelvedata.com/macd?symbol=" + symbol + "&interval=1day&apikey=" + ApiKey
-    response = requests.get(apiUrl)
-    
-    if response.status_code == 200:
-        data = response.json()
-        print("Full JSON response:\n", json.dumps(data, sort_keys=True, indent=4))
-    else:
-        print(f"Error: {response.status_code}")
-
-
-
-
-
-#TEST ---------------------------
-
-
-
-
-
-    #getDataMACD("AMD")
-
-    #today = ql.Date(10,5,2024)
-
-    #ql.Settings.instance().evaluationDate = today
-
-
-    #print(ql.Settings.instance().evaluationDate)
-
-
-    #rate = ql.InterestRate(0.05, ql.Actual360(), ql.Compounded, ql.Annual)
-
-
-    #print (rate)
-    #print(dataset.head(10))
-
-
-#TEST------------------------------
-  
